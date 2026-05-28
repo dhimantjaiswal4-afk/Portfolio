@@ -22,15 +22,12 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   textClassName = "",
   wordAnimationEnd = "bottom 70%",
 }) => {
-
   const containerRef = useRef<HTMLHeadingElement>(null);
 
   const splitText = useMemo(() => {
-
     const text = typeof children === "string" ? children : "";
 
     return text.split(/(\s+)/).map((word, index) => {
-
       if (word.match(/^\s+$/)) return word;
 
       return (
@@ -38,50 +35,55 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
           {word}
         </span>
       );
-
     });
-
   }, [children]);
 
   useEffect(() => {
-
     const el = containerRef.current;
 
     if (!el) return;
 
     const scroller =
-      scrollContainerRef && scrollContainerRef.current
-        ? scrollContainerRef.current
-        : window;
+      scrollContainerRef?.current || window;
 
-    const wordElements = el.querySelectorAll<HTMLElement>(".word");
+    const wordElements =
+      el.querySelectorAll<HTMLElement>(".word");
+
+    gsap.set(wordElements, {
+      clearProps: "all",
+      rotate: 0,
+      filter: "blur(0px)",
+    });
 
     gsap.fromTo(
       wordElements,
       {
         opacity: baseOpacity,
-        y: 24,
+        y: 12,
       },
       {
         opacity: 1,
         y: 0,
         stagger: 0.03,
         ease: "power2.out",
+        duration: 0.6,
         scrollTrigger: {
           trigger: el,
           scroller,
           start: "top 88%",
           end: wordAnimationEnd,
-          scrub: false,
           once: true,
         },
       }
     );
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
+      ScrollTrigger.getAll().forEach((trigger) =>
+        trigger.kill()
+      );
 
+      gsap.killTweensOf(wordElements);
+    };
   }, [scrollContainerRef, baseOpacity, wordAnimationEnd]);
 
   return (
@@ -89,7 +91,9 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
       ref={containerRef}
       className={`scroll-reveal ${containerClassName}`}
     >
-      <p className={`scroll-reveal-text ${textClassName}`}>
+      <p
+        className={`scroll-reveal-text ${textClassName}`}
+      >
         {splitText}
       </p>
     </h2>
