@@ -2,6 +2,28 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+export default function RootLayout
+export const metadata = {
+  title: "Dhimant Portfolio",
+  description:
+    "Cinematic editing, storytelling, motion, and creative direction.",
+  openGraph: {
+    title: "Dhimant Portfolio",
+    description:
+      "Cinematic editing, storytelling, motion, and creative direction.",
+    url: "https://www.dhimant.space",
+    siteName: "Dhimant Portfolio",
+    images: [
+      {
+        url: "/web-logo.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+};
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
