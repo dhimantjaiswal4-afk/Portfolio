@@ -1,0 +1,304 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Galgo";
+  src:
+    url("/fonts/Galgo-Bold.woff2") format("woff2"),
+    url("/fonts/Galgo-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Galgo";
+  src:
+    url("/fonts/Galgo-Light.woff2") format("woff2"),
+    url("/fonts/Galgo-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --background: #000000;
+  --foreground: #f2f2f2;
+  --intro-name-size: clamp(2.25rem, 10vw, 6.5rem);
+  --intro-tagline-size: calc(var(--intro-name-size) / 8);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: #f2f2f2;
+  color: #000000;
+}
+
+.font-galgo-bold {
+  font-family: "Galgo", system-ui, sans-serif;
+  font-weight: 700;
+}
+
+.font-galgo-light {
+  font-family: "Galgo", system-ui, sans-serif;
+  font-weight: 300;
+}
+
+.intro-name {
+  font-size: var(--intro-name-size);
+  line-height: 1.05;
+  letter-spacing: 0.04em;
+}
+
+.intro-tagline {
+  font-size: var(--intro-tagline-size);
+  line-height: 1.4;
+}
+
+.intro-letter {
+  will-change: transform, opacity;
+}
+
+.intro-overlay {
+  will-change: opacity, filter, transform;
+}
+
+.intro-scroll-layer {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.intro-scroll-layer::-webkit-scrollbar {
+  display: none;
+}
+
+.intro-scroll-active {
+  cursor: default;
+}
+
+/* ── Homepage template (post-intro) ── */
+.home-template {
+  isolation: isolate;
+}
+
+.home-shapegrid-layer {
+  opacity: 0.62;
+}
+
+.home-taskbar {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.72) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.home-taskbar-brand {
+  font-size: 35px;
+  line-height: 1;
+  letter-spacing: 5.3px;
+  font-weight: 400;
+  transform: translateY(1px);
+}
+
+.home-taskbar-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  min-width: 64px;
+  padding-inline: 0.15rem;
+  font-size: 28px;
+  line-height: 1;
+  border: 1px solid rgba(248, 241, 241, 1);
+  border-image: radial-gradient(
+      ellipse at 50% 50%,
+      rgba(248, 241, 241, 1) 65%,
+      rgba(0, 0, 0, 1) 12%
+    )
+    1;
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    rgba(121, 113, 107, 1) 32%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.home-hero {
+  position: relative;
+  margin-top: -2.5vh;
+  padding-block: 0.5rem;
+}
+
+.home-hero::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: -1;
+  width: min(92vw, 52rem);
+  height: min(70vh, 28rem);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 68% 62% at 50% 50%,
+    rgba(0, 0, 0, 0.78) 0%,
+    rgba(0, 0, 0, 0.42) 42%,
+    rgba(0, 0, 0, 0.12) 68%,
+    transparent 82%
+  );
+}
+
+.home-hero-title {
+  font-size: clamp(3.25rem, 12vw, 7.25rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.home-hero-eyebrow {
+  opacity: 0.88;
+}
+
+.home-hero-subtitle {
+  opacity: 0.82;
+  font-size: 3.4375rem; /* 55px — 5× the previous 11px eyebrow-scale tagline */
+  line-height: 1.1;
+}
+
+@media (min-width: 768px) {
+  .home-hero-subtitle {
+    font-size: 3.75rem; /* 60px — 5× the previous 12px md size */
+  }
+}
+
+.home-buttons {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.78) 0%,
+    rgba(0, 0, 0, 0.2) 55%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.home-btn {
+  font-family: "Galgo", system-ui, sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.95rem 2rem;
+  min-width: 10.25rem;
+  text-align: center;
+  border-radius: 9999px;
+  transition:
+    color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.home-btn:focus-visible {
+  outline: 1px solid rgba(245, 245, 244, 0.45);
+  outline-offset: 3px;
+}
+
+.home-btn-primary {
+  color: #0a0a0a;
+  background: #f5f5f4;
+  border: 1px solid rgba(250, 250, 249, 0.95);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 4px 28px rgba(0, 0, 0, 0.38);
+}
+
+.home-btn-primary:hover {
+  background: #fafaf9;
+  border-color: #fafaf9;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 6px 32px rgba(0, 0, 0, 0.48);
+  transform: translateY(-1px);
+}
+
+.home-btn-primary:active {
+  transform: translateY(0);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 2px 16px rgba(0, 0, 0, 0.32);
+}
+
+.home-btn-secondary {
+  color: #d6d3d1;
+  background: rgba(91, 75, 120, 0.08);
+  border: 1px solid rgba(120, 100, 150, 0.55);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(6px);
+}
+
+.home-btn-secondary:hover {
+  color: #f5f5f4;
+  background: rgba(91, 75, 120, 0.16);
+  border-color: rgba(140, 118, 175, 0.75);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.4);
+  transform: translateY(-1px);
+}
+
+.home-btn-secondary:active {
+  transform: translateY(0);
+  background: rgba(91, 75, 120, 0.1);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Film grain texture ── */
+.intro-grain {
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  mix-blend-mode: overlay;
+  animation: grain-shift 8s steps(10) infinite;
+}
+
+@keyframes grain-shift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-2%, -3%);
+  }
+  30% {
+    transform: translate(3%, 2%);
+  }
+  50% {
+    transform: translate(-1%, 4%);
+  }
+  70% {
+    transform: translate(2%, -2%);
+  }
+  90% {
+    transform: translate(-3%, 1%);
+  }
+}
