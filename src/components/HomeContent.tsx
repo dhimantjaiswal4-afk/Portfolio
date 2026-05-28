@@ -258,7 +258,7 @@ pathWidth={2}
 
     {/* SCROLL REVEAL TEXT */}
     <ScrollReveal
-      baseOpacity={0.15}
+      baseOpacity={1}
       containerClassName="mb-28"
       textClassName="text-white font-semibold leading-[1.25]"
     >
