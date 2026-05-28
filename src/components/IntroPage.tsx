@@ -13,7 +13,7 @@ import Intro from "./Intro";
 import HomeContent from "./HomeContent";
 
 const SCROLL_DISTANCE = 520;
-const DISMISS_THRESHOLD = 0.92;
+const DISMISS_THRESHOLD = 0.35;
 
 export default function IntroPage() {
 
@@ -50,15 +50,21 @@ export default function IntroPage() {
     [0.35, 0.7, 1]
   );
 
-  useMotionValueEvent(scrollYProgress, "change", (progress) => {
+ useMotionValueEvent(scrollYProgress, "change", (progress) => {
 
-    if (introReady && progress >= DISMISS_THRESHOLD) {
-      setIntroComplete(true);
+  if (introReady && progress >= DISMISS_THRESHOLD) {
 
-      document.body.style.overflowY = "auto";
-      document.body.style.touchAction = "auto";
-    }
-  });
+    setIntroComplete(true);
+
+    document.body.style.overflow = "auto";
+    document.body.style.touchAction = "auto";
+
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }
+});
 
   const handleRevealReady = useCallback(() => {
     setIntroReady(true);
@@ -102,7 +108,7 @@ export default function IntroPage() {
             <div
               className="w-full"
               style={{
-                height: introReady ? "160vh" : "100vh",
+                height: introReady ? "220vh" : "100vh",
               }}
             />
 
