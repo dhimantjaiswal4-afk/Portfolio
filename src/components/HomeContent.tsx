@@ -136,7 +136,7 @@ export default function HomeContent() {
           className="relative"
         >
           <h3 className="text-white/50 uppercase tracking-[0.6em] text-lg md:text-2xl font-light">
-            SHORT FILMS
+            SHORT FILMS - (landscape)
           </h3>
         </motion.div>
 
@@ -177,7 +177,7 @@ export default function HomeContent() {
             responsive={true}
 
             showPath={true}
-            pathColor="rgba(189, 185, 192, 0.6)"
+            pathColor="rgba(189, 185, 192, 0.16)"
 pathWidth={2}
 
             width={1000}
@@ -199,7 +199,7 @@ pathWidth={2}
           </h2>
 
           <p className="mt-6 text-white/40 uppercase tracking-[0.45em] text-sm">
-            Digital compositions · Experimental imagery
+            Digital Work - Photography
           </p>
 
         </div>
@@ -218,10 +218,7 @@ pathWidth={2}
     className="relative z-10 text-center max-w-6xl"
   >
 
-    <p className="mb-6 text-white/20 uppercase tracking-[0.5em] text-xs md:text-sm">
-      REELS
-    </p>
-
+    
     <h2 className="text-white font-bold leading-[0.9] tracking-[-10 px]
     text-5xl md:text-8xl">
 
@@ -258,7 +255,7 @@ pathWidth={2}
 
     {/* SCROLL REVEAL TEXT */}
     <ScrollReveal
-      baseOpacity={1}
+      baseOpacity={1.25}
       containerClassName="mb-28"
       textClassName="text-white font-semibold leading-[1.25]"
     >
